@@ -1,0 +1,9 @@
+.ingredient-group{
+    width: 50%;
+    float: left;
+}
+
+.clear{
+    padding-top: 15px;
+    clear: both;
+}
