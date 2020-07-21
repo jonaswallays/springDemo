@@ -7,3 +7,25 @@
     padding-top: 15px;
     clear: both;
 }
+
+.padding-bottom{
+    padding-bottom: 5px;
+}
+
+.padding-top{
+    padding-top: 5px;
+}
+
+label{
+    width: 20%;
+    display: inline-block
+}
+
+.validationError{
+    color: red;
+}
+
+img{
+    width: 25%;
+    height: 25%;
+}
