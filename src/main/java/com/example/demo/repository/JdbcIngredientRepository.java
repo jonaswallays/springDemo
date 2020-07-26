@@ -12,26 +12,27 @@ import java.sql.SQLException;
 @Repository
 public class JdbcIngredientRepository implements IngredientRepository{
 
-    private JdbcTemplate jdbc;
+    private JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public JdbcIngredientRepository(JdbcTemplate jdbc) {
-        this.jdbc = jdbc;
+    public JdbcIngredientRepository(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     @Override
     public Iterable<Ingredient> findAll() {
-        return jdbc.query("select id, name, type from Ingredient", this::mapRowToIngredient);
+        return jdbcTemplate.query("select id, name, type from Ingredient", this::mapRowToIngredient);
     }
 
     @Override
     public Ingredient findOne(String id) {
-        return jdbc.queryForObject("select id, name, type from Ingredient where id=?", this::mapRowToIngredient, id);
+        return jdbcTemplate.queryForObject("select id, name, type from Ingredient where id=?", this::mapRowToIngredient, id);
     }
 
     @Override
     public Ingredient save(Ingredient ingredient) {
-        return null;
+        jdbcTemplate.update("insert into Ingredient (id, name, type) values (?, ?, ?)");
+        return ingredient;
     }
 
     private Ingredient mapRowToIngredient(ResultSet rs, int rowNum) throws SQLException {
